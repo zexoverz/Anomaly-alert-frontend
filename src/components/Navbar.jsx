@@ -12,7 +12,7 @@ function Navbar() {
     };
 
     return (
-    <Box display={'flex'} style={{backgroundColor: 'white',}}  flexDirection={'row'} justifyContent={'space-between'} p={2} >
+    <Box display={'flex'} style={{backgroundColor: 'white',}}  flexDirection={'row'} justifyContent={'space-between'} p={1} >
         <Box display={'flex'} flexDirection={'row'} >
             <img src={logo} alt="logo" style={{width: '200px', marginRight: '40px'}}/>
             <Tabs value={value} onChange={handleChange} >
