@@ -1,5 +1,5 @@
-import { Box, InputLabel, TextField, Typography, MenuItem, TextareaAutosize, Button } from '@mui/material'
-import React, {useEffect, useRef} from 'react'
+import { Box, TextField, Typography, MenuItem, TextareaAutosize, Button } from '@mui/material'
+import React, {useEffect} from 'react'
 import { useState } from 'react'
 import firebaseApp from '../firebase';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
@@ -89,7 +89,7 @@ function Content({selectedAlert, setSelectedAlert}) {
     try{
       let response = await axios.put(`https://anomaly-alert-backend.herokuapp.com/alert/${selectedAlert._id}`, updateAlert)
 
-      if(response.status == 200){
+      if(response.status === 200){
         toast.success('Successfully updated alerts')
         setSelectedAlert(response.data)
       }
@@ -142,7 +142,7 @@ function Content({selectedAlert, setSelectedAlert}) {
             onChange={(e) => setSelectedAlert({...selectedAlert, reason: e.target.value})}
             sx={{width: '200px'}}
           >
-            {selectedAlert.machine == "CNC Machine" ? cncReason.map(reason => <MenuItem key={reason.value} 
+            {selectedAlert.machine === "CNC Machine" ? cncReason.map(reason => <MenuItem key={reason.value} 
             value={reason.value}>{reason.label}</MenuItem>) : 
             millingReason.map(reason => <MenuItem key={reason.value} value={reason.value}>{reason.label}</MenuItem>)}
           </TextField>
@@ -167,7 +167,10 @@ function Content({selectedAlert, setSelectedAlert}) {
         </Box>
 
         <Button color='primary' variant='contained' sx={{width: 120}} onClick={updateAlert}>Update</Button>
-        
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
       </Box>
     </Box>
     
